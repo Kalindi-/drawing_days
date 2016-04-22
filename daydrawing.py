@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
 from dateutil.parser import parse
-import json
 import requests
 
 
-def sun_on_date(location, date):
+def sun_on_date(loc, date):
     """Returns sunrise and sunset times based on location and date"""
 
-    sun_api_url = "http://api.geonames.org/timezoneJSON?lat=" + str(location[0]) + \
-                  "&lng=" + str(location[1]) + "&date=" + date + "&username=demo"
-    # use my name as username, if it does not work with demo
-    sun_api_url_response = requests.get(sun_api_url)
-    sun_data = sun_api_url_response.json()
+    # The requests module supports a payload object for get requests.
+    payload = {
+        "lat": str(loc[0]),
+        "lng": str(loc[1]),
+        "date": date,
+        "username": "demo"  # Use "kalindi" if "demo" doesn't work
+    }
+    api_res = requests.get("http://api.geonames.org/timezoneJSON",
+                           params=payload)
+    sun_data = api_res.json()
+
     try:
         print sun_data["message"]
         print "bad stuff"
         return "Something went wrong"
     except:
-        sunrise_string = sun_data["dates"][0]["sunrise"]
-        sunset_string = sun_data["dates"][0]["sunset"]
-        sunrise = sunrise_string[11:16]
-        sunset = sunset_string[11:16]
+        sunrise = sun_data["dates"][0]["sunrise"][11:16]
+        sunset = sun_data["dates"][0]["sunset"][11:16]
         return sunrise, sunset
 
 
@@ -94,4 +97,4 @@ def play_here():
     day_drawing = draw_day(day)
     return day_drawing
 
-#print play_here()
+print play_here()
