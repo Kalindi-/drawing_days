@@ -24,12 +24,14 @@ def sun_on_date(location, date):
         return sunrise, sunset
 
 
-def make_day(sunrise, sunset, precision=4):
-    """Creates a list rappresentation of the day, █ rappresenting night time and ☼ daytime"""
+def make_day(sunrise, sunset, drawing_precision=4):
+    """Creates a list rappresentation of the day, █ rappresenting night time and ☼ daytime
 
-    day = [["█"]*24*precision]
-    sunrise_int = int(sunrise[:2]) * precision + int(sunrise[3:]) / 60 / precision
-    sunset_int = int(sunset[:2]) * precision + int(sunset[3:]) / 60 / precision
+    drawing_precision: the higher the better"""
+
+    day = [["█"]*24*drawing_precision]
+    sunrise_int = int(sunrise[:2]) * drawing_precision + int(sunrise[3:]) / 60 / drawing_precision
+    sunset_int = int(sunset[:2]) * drawing_precision + int(sunset[3:]) / 60 / drawing_precision
     for i in range(sunrise_int, sunset_int):
         day[0][i] = "☼"
     return draw_day(day)
