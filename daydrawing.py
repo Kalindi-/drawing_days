@@ -8,7 +8,8 @@ def sun_on_date(location, date):
     """Returns sunrise and sunset times based on location and date"""
 
     sun_api_url = "http://api.geonames.org/timezoneJSON?lat=" + str(location[0]) + \
-                  "&lng=" + str(location[1]) + "&date=" + date + "&username=kalindi"
+                  "&lng=" + str(location[1]) + "&date=" + date + "&username=demo"
+    # use my name as username, if it does not work with demo
     sun_api_url_response = requests.get(sun_api_url)
     sun_data = sun_api_url_response.json()
     try:
@@ -94,5 +95,4 @@ def play_here():
 # http://sunrise-sunset.org/api
 # https://clicky.com/forums/?id=17810
 # http://www.geonames.org/export/web-services.html
-
 
