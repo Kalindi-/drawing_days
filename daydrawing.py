@@ -26,6 +26,7 @@ def sun_on_date(location, date):
 
 def make_day(sunrise, sunset, precision=4):
     """Creates a list rappresentation of the day, █ rappresenting night time and ☼ daytime"""
+
     day = [["█"]*24*precision]
     sunrise_int = int(sunrise[:2]) * precision + int(sunrise[3:]) / 60 / precision
     sunset_int = int(sunset[:2]) * precision + int(sunset[3:]) / 60 / precision
@@ -61,6 +62,7 @@ def valid_location(location):
 
 def is_valid_date(date):
     """checks if date is valid, reasks till valid, returns date """
+
     try:
         parse(date)
         return date
@@ -70,6 +72,8 @@ def is_valid_date(date):
 
 
 def get_user_info():
+    """Prompts the user for, returns ((lat, lng), date)"""
+
     user_location = raw_input("Input a location: ")
     user_location = valid_location(user_location)
 
@@ -80,6 +84,8 @@ def get_user_info():
     return user_location, user_date
 
 def play_here():
+    """Function that runs the program if it to be run from this file"""
+
     user_location, user_date = get_user_info()
     sunrise, sunset = sun_on_date(user_location, user_date)
     day = make_day(sunrise, sunset)
@@ -87,12 +93,3 @@ def play_here():
     return day_drawing
 
 #print play_here()
-
-
-
-
-# resources:
-# http://sunrise-sunset.org/api
-# https://clicky.com/forums/?id=17810
-# http://www.geonames.org/export/web-services.html
-
