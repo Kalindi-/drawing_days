@@ -11,9 +11,9 @@ I wanted to work on something for a bit, so this was it.
 
 #### How?
 
-Run it either with the `daydrawing.py and the `play_here()` command.
+Run it either with the `daydrawing.py` and the `play_here()` command.
 
-Or by creating a DayImageOnDate(location_string:cityname, date_sting:YYYY-MM-DD ) object and calling its `make_drawing()` method.
+Or by creating a `DayImageOnDate(location_string:cityname, date_string:YYYY-MM-DD)` object and calling its `make_drawing()` method.
 
 ---
 
