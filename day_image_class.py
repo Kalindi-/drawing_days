@@ -25,7 +25,7 @@ def compare_locations(locations, date, precision=4):
     location_drawings = []
     for loc in locations:
         drawing = DayImageOnDate(loc, date).make_drawing()
-        drawing += "    " + loc + "on" + date + "\n"
+        drawing += "    " + loc + " on " + date + "\n"
         location_drawings.append(drawing)
 
     return "".join(location_drawings)
@@ -41,8 +41,8 @@ def compare_dates(location, dates, precision=4):
 
     return "".join(date_drawings)
 
-locations = ["koper", "warwick", "quito"]
+locations = ["piran", "warwick", "quito"]
 #print compare_locations(locations, "2016-04-22")
 dates = ["2015-12-20", "2015-06-21"]
-print compare_dates("quito", dates)
+#print compare_dates("quito", dates)
 
