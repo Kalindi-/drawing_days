@@ -1,0 +1,13 @@
+div {
+	height: 300px;
+    /*background: darkblue;*/
+	/* background: -webkit-linear-gradient(to right, darkblue , red, yellow 40%, red, darkblue);*/
+ 	/* background: -o-linear-gradient(to right, darkblue , red, yellow 40%, red, darkblue); */
+    /* background: -moz-linear-gradient(to right, darkblue , red, yellow 40%, red, darkblue);*/
+    /*background: linear-gradient(to right, darkblue , red 10%, yellow , red 90%, darkblue);*/
+}
+
+/*
+resources:
+https://css-tricks.com/css3-gradients/
+*/

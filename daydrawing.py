@@ -6,26 +6,30 @@ import requests
 def sun_on_date(loc, date):
     """Returns sunrise and sunset times based on location and date"""
 
-    # The requests module supports a payload object for get requests.
     payload = {
         "lat": str(loc[0]),
         "lng": str(loc[1]),
         "date": date,
-        "username": "demo"  # Use "kalindi" if "demo" doesn't work
+        "username": "demo"  # Use my name if "demo" doesn't work
     }
-    api_res = requests.get("http://api.geonames.org/timezoneJSON",
-                           params=payload)
+    api_res = requests.get("http://api.geonames.org/timezoneJSON", params=payload)
     sun_data = api_res.json()
 
     try:
         print sun_data["message"]
-        print "bad stuff"
+        print "bad stuff happened"
         return "Something went wrong"
     except:
         sunrise = sun_data["dates"][0]["sunrise"][11:16]
         sunset = sun_data["dates"][0]["sunset"][11:16]
         return sunrise, sunset
 
+def get_day_percent(sunrise, sunset, drawing_precision=4):
+    sunrise_int = int(sunrise[:2]) * drawing_precision + int(sunrise[3:]) / 60 / drawing_precision
+    sunset_int = int(sunset[:2]) * drawing_precision + int(sunset[3:]) / 60 / drawing_precision
+    return sunrise_int, sunset_int
+
+print get_day_percent("06:07", "20:01")
 
 def make_day(sunrise, sunset, drawing_precision=4):
     """Creates a list rappresentation of the day, █ rappresenting night time and ☼ daytime
@@ -97,4 +101,4 @@ def play_here():
     day_drawing = draw_day(day)
     return day_drawing
 
-print play_here()
+# print play_here()

@@ -6,20 +6,26 @@ class DayImageOnDate(object):
 
     drawing_precision = 4
 
-    def __init__(self, location, date, drawing_precision):
+    def __init__(self, location, date, drawing_precision=4):
 
         self.location_lat_lng = daydrawing.valid_location(location)
         self.date = daydrawing.is_valid_date(date)
         self.drawing_precision = drawing_precision
         self.sunrise, self.sunset = daydrawing.sun_on_date(self.location_lat_lng, self.date)
 
+    def get_day_percents(self):
+        self.day = daydrawing.get_day_percent(self.sunrise, self.sunset, self.drawing_precision)
+        return self.day
+
+
     def make_drawing(self):
         self.drawing = daydrawing.make_day(self.sunrise, self.sunset, self.drawing_precision)
         return self.drawing
 
-# my = DayImageOnDate("koper", "2000-06-11")
+#my = DayImageOnDate("koper", "2000-06-11")
 # my.drawing_precision = 5
 # print my.make_drawing()
+# print my.get_day_percents()
 
 
 def compare_locations(locations, date, drawing_precision=4):
