@@ -25,3 +25,5 @@ Take a list of dates, and call `print compare_dates(location, date_list)`
 
 ###### possible troubles
 If the sunrisesunset api complains, my name is to be used as username.
+
+o
