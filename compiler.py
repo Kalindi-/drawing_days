@@ -20,9 +20,13 @@ class Page(webapp2.RequestHandler):
 
     def get(self, reg_input=""):
 
-        location = "melbourne"
-        date = "2017-01-01"
-
+        location, date = "melbourne", "2017-01-01"
+        template_values = {
+            "day_percentages": {
+                "sunrise" : 24,
+                "sunset" : 80
+            }
+        }
 
         user_location = self.request.get('location')
         user_date = self.request.get('date')
@@ -30,22 +34,27 @@ class Page(webapp2.RequestHandler):
         if user_location and user_date:
             location, date = user_location, user_date
 
-        page_dictionary = {
-            "" : "index.html"
-            #"x" : "x"
-        }
+        page_dictionary = {"": "index.html"}
+        html_template = page_dictionary[reg_input]
 
         sun_data = daydrawing.sun_on_date(location, date)
 
-        day = daydrawing.get_day_percent(sun_data)
-        html_template = page_dictionary[reg_input]
-        template_values = {"date": date, "location":location}
-        template_values["day"] = day
+        if sun_data:
+            day_percentages = daydrawing.get_day_percent(sun_data)
+
+            if day_percentages:
+                template_values["day_percentages"] = day_percentages
+        else:
+            template_values["error"] = True
+
+        template_values["date"] = date
+        template_values["location"] = location
+
 
         template = JINJA_ENVIRONMENT.get_template(html_template)
         self.response.write(template.render(template_values))
 
-app = webapp2.WSGIApplication([(r'/', Page),
+app = webapp2.WSGIApplication([(r'/', Page)
                               # ('/(\w+)', Page),
                               ],
                               debug = True)
