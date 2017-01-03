@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<link rel="stylesheet" href="css/style.css">
-		<title>Day and night</title>
-		<link rel="shortcut icon" href="http://www.iconj.com/ico/f/8/f88v7jzah6.ico" type="image/x-icon">
-		<meta name="description" content="days">
-		<meta name="viewport" content="width=device-width, initial-scale=0.5">
-	</head>
-	<body>
-		<div id="day"
-			style="background: linear-gradient(to right,
-																				darkblue,
-																				red {{day[0]}}%,
-																				yellow,
-																				red {{day[1]}}%,
-																				darkblue);">
-		</div>
-<!-- {# <div id="day2"
-			style="background: linear-gradient(to right,
-																				darkblue,
-																				red {{day2[0]}}%,
-																				yellow,
-																				red {{day2[1]}}%,
-																				darkblue);">
-		</div> #} -->
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Day and night</title>
+    <link rel="shortcut icon" href="http://www.iconj.com/ico/f/8/f88v7jzah6.ico" type="image/x-icon">
+    <meta name="description" content="days">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  </head>
+  <body>
+    <form method="get" action="/">
+      <input name="location" type="text" value={{location}}>
+      <input name="date" type="date" value={{date}}>
+      <input type="submit">
+    </form>
+
+    {% if error %}
+      <p>Couldn't process your data or don't have it yet, data is for Melbourne, 2017-01-01</p>
+    {% else %}
+      <p>{{location}}, {{date}}</p>
+    {% endif %}
+
+
+    <div id="day" style="background: linear-gradient(
+      to right,
+        black,
+        darkblue,
+        red {{day_percentages["sunrise"]}}%,
+        orange,
+        yellow,
+        orange,
+        red {{day_percentages["sunset"]}}%,
+        darkblue,
+        black);">
+      <table style="width:100%">
+        <tr>
+          <th>|</th><th>|</th><th>|</th><th>|</th>
+          <th>|</th><th>|</th><th>|</th><th>|</th>
+          <th>|</th><th>|</th><th>|</th><th>|</th>
+          <th>|</th><th>|</th><th>|</th><th>|</th>
+          <th>|</th><th>|</th><th>|</th><th>|</th>
+          <th>|</th><th>|</th><th>|</th><th>|</th>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>
