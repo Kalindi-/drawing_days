@@ -25,7 +25,7 @@ def sun_on_date(loc, date):
         print "Sun on date url call did not work"
         return False
 
-def get_day_percent(sun_data, drawing_precision=4):
+def get_day_percent(sun_data):
     sunrise, sunset = sun_data
     day_percentages = {
         "sunrise": get_sun_time(sunrise),
@@ -33,7 +33,7 @@ def get_day_percent(sun_data, drawing_precision=4):
     }
     return day_percentages
 
-def get_sun_time(time):
+def get_sun_time(time, drawing_precision=4):
     return int(time[:2]) * drawing_precision + int(time[3:]) / 60 / drawing_precision
 
 def valid_location(location):
