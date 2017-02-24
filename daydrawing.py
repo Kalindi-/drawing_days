@@ -40,7 +40,7 @@ def valid_location(location):
     """Checks if the location gives lat and lng, asks till valid, returns it."""
     try:
         url='http://maps.googleapis.com/maps/api/geocode/json?address=' + location
-        location_data_str = urlfetch.fetch(url)
+        location_data_str = urlfetch.fetch(urllib.quote(url))
         location_data = json.loads(location_data_str.content)
 
         if location_data["status"] == "OK":
