@@ -10,9 +10,8 @@ def sun_on_date(loc, date):
         "lat": str(loc[0]),
         "lng": str(loc[1]),
         "date": date,
-        "username": "kalindi"  # Use my name if "demo" doesn't work
+        "username": "kalindi"
     }
-
     payload = urllib.urlencode(payload)
 
     try:
@@ -27,9 +26,18 @@ def sun_on_date(loc, date):
 
 def get_day_percent(sun_data):
     sunrise, sunset = sun_data
+    sunrise = get_sun_time(sunrise)
+    sunset = get_sun_time(sunset)
+
     day_percentages = {
-        "sunrise": get_sun_time(sunrise),
-        "sunset": get_sun_time(sunset)
+        "darkbluerise": sunrise - 8,
+        "redrise": sunrise - 2,
+        "orangerise": sunrise,
+        "yellowrise": sunrise + 5,
+        "yellowset": sunset - 5,
+        "orangeset": sunset,
+        "redset": sunset + 2,
+        "darkblueset": sunset + 8
     }
     return day_percentages
 
@@ -38,19 +46,18 @@ def get_sun_time(time, drawing_precision=4):
 
 def valid_location(location):
     """Checks if the location gives lat and lng, asks till valid, returns it."""
+    url='http://maps.googleapis.com/maps/api/geocode/json?address=' + urllib.quote(location)
     try:
-        url='http://maps.googleapis.com/maps/api/geocode/json?address=' + location
-        location_data_str = urlfetch.fetch(urllib.quote(url))
+        location_data_str = urlfetch.fetch(url)
         location_data = json.loads(location_data_str.content)
-
         if location_data["status"] == "OK":
             lat_lng = location_data["results"][0]["geometry"]["location"]
             return lat_lng["lat"], lat_lng["lng"]
         else:
             return "Invalid location"
     except urlfetch.Error:
-        print "Caught exception fetching url"
-        return "Caught exception fetching url"
+        print "Caught exception fetching location url"
+        return "Caught exception fetching location url"
 
 #print valid_location("melbourn")
 

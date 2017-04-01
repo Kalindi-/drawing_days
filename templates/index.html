@@ -11,7 +11,7 @@
   </head>
   <body>
     <form method="get" action="/">
-      <input name="location" type="text" value={{location}}>
+      <input name="location" type="text" value="{{location}}">
       <input name="date" type="date" value={{date}}>
       <input type="submit">
     </form>
@@ -22,26 +22,27 @@
       <p>{{location}}, {{date}}</p>
     {% endif %}
 
-
     <div id="day" style="background: linear-gradient(
       to right,
         black,
-        darkblue,
-        red {{day_percentages["sunrise"]}}%,
-        orange,
-        yellow,
-        orange,
-        red {{day_percentages["sunset"]}}%,
-        darkblue,
+        darkblue {{day_percentages["darkbluerise"]}}%,
+        red {{day_percentages["redrise"]}}%,
+        orange {{day_percentages["orangerise"]}}%,
+        yellow {{day_percentages["yellowrise"]}}%,
+        yellow {{day_percentages["yellowset"]}}%,
+        orange {{day_percentages["orangeset"]}}%,
+        red {{day_percentages["redset"]}}%,
+        darkblue {{day_percentages["darkblueset"]}}%,
         black);">
-      <table style="width:100%">
+      <table>
         <tr>
-          <th>|</th><th>|</th><th>|</th><th>|</th>
-          <th>|</th><th>|</th><th>|</th><th>|</th>
-          <th>|</th><th>|</th><th>|</th><th>|</th>
-          <th>|</th><th>|</th><th>|</th><th>|</th>
-          <th>|</th><th>|</th><th>|</th><th>|</th>
-          <th>|</th><th>|</th><th>|</th><th>|</th>
+          <th>0</th><th>1</th><th>2</th><th>3</th>
+          <th>4</th><th>5</th><th>6</th><th>7</th>
+          <th>8</th><th>9</th><th>10</th><th>11</th>
+          <th>12</th><th>1</th><th>2</th><th>3</th>
+          <th>4</th><th>5</th><th>6</th><th>7</th>
+          <th>8</th><th>9</th><th>10</th><th>11</th>
+          <th>0</th>
         </tr>
       </table>
     </div>

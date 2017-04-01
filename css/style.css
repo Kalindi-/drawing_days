@@ -2,6 +2,18 @@ div {
 	height: 300px;
 }
 
+table {
+	 min-width: 104.1%;
+	 margin-left: -0.43%;
+	 color: white;
+}
+
+th {
+	text-align: left;
+	max-width: .041vw;
+}
+
+
 /*
 resources:
 https://css-tricks.com/css3-gradients/

@@ -49,6 +49,7 @@ class Page(webapp2.RequestHandler):
 
         template_values["date"] = date
         template_values["location"] = location
+        print template_values["location"]
 
 
         template = JINJA_ENVIRONMENT.get_template(html_template)
