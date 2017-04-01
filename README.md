@@ -10,9 +10,9 @@ In this project I want to reach the following:
 - show it with colors on the page.
 
 Future maybe:
-	more dates, more locations
-	twiglight accurate
-	daylight savings fix
+	more dates - more locations,
+	twiglight accurate,
+	daylight savings fix,
 	put it actually online
 
 
