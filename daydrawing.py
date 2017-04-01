@@ -15,7 +15,7 @@ def sun_on_date(loc, date):
     payload = urllib.urlencode(payload)
 
     try:
-        url='http://api.geonames.org/timezoneJSON?' + payload
+        url = 'http://api.geonames.org/timezoneJSON?' + payload
         result = json.loads(urlfetch.fetch(url).content)
         sun_data = result["dates"][0]
         sunrise, sunset = sun_data["sunrise"][11:16], sun_data["sunset"][11:16]
@@ -25,9 +25,8 @@ def sun_on_date(loc, date):
         return False
 
 def get_day_percent(sun_data):
-    sunrise, sunset = sun_data
-    sunrise = get_sun_time(sunrise)
-    sunset = get_sun_time(sunset)
+    sunrise = get_sun_time(sun_data[0])
+    sunset = get_sun_time(sun_data[1])
 
     day_percentages = {
         "darkbluerise": sunrise - 8,
@@ -55,10 +54,7 @@ def valid_location(location):
             return lat_lng["lat"], lat_lng["lng"]
         else:
             return "Invalid location"
+
     except urlfetch.Error:
         print "Caught exception fetching location url"
         return "Caught exception fetching location url"
-
-#print valid_location("melbourn")
-
-
