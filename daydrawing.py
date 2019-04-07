@@ -45,7 +45,10 @@ def get_sun_time(time, drawing_precision=4):
 
 def valid_location(location):
     """Checks if the location gives lat and lng, asks till valid, returns it."""
-    url='http://maps.googleapis.com/maps/api/geocode/json?address=' + urllib.quote(location)
+    ADDKEY = ""
+    if ADDKEY == "":
+        print "\n\n \033[93m ADD googlemaps API key\x1b[0m\n\n"
+    url='https://maps.googleapis.com/maps/api/geocode/json?address=' + urllib.quote(location) + "&key=" + ADDKEY
     try:
         location_data_str = urlfetch.fetch(url)
         location_data = json.loads(location_data_str.content)

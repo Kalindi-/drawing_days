@@ -17,6 +17,10 @@ class Page(webapp2.RequestHandler):
 
     def get(self, reg_input=""):
         location, date = "melbourne", "2017-01-01"
+        day_percentages = {
+                "sunrise" : 24,
+                "sunset" : 80
+            }
         template_values = {
             "day_percentages" : {
                 "sunrise" : 24,
